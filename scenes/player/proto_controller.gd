@@ -44,6 +44,10 @@ extends CharacterBody3D
 ## Name of Input Action to toggle freefly mode.
 @export var input_freefly : String = "freefly"
 
+@export_group("Other")
+@export var throw_froce:Vector3=Vector3(1,0,-10)
+@export var ball:PackedScene
+
 var mouse_captured : bool = false
 var look_rotation : Vector2
 var move_speed : float =0.0
@@ -53,15 +57,31 @@ var freeflying : bool = false
 @onready var head: Node3D = $Head
 @onready var collider: CollisionShape3D = $Collider
 
+@onready var marker_3d: Marker3D = %Marker3D
+
 func _ready() -> void:
 	check_input_mappings()
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
 
 func _unhandled_input(event: InputEvent) -> void:
+	print(basis)
+	#射击逻辑
+	if mouse_captured and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if marker_3d.get_child_count():
+			marker_3d.get_child(0).throw(Vector3(-10*basis.z.x,1,-10*basis.z.z))
+			pass
+	
+	if Input.is_action_just_pressed("reset"):
+		if not marker_3d.get_child_count():
+			var bi=ball.instantiate()
+			marker_3d.add_child(bi)
+			bi.global_position=marker_3d.global_position
+			
 	# Mouse capturing
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		capture_mouse()
+		
 	if Input.is_key_pressed(KEY_ESCAPE):
 		release_mouse()
 	
@@ -75,7 +95,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			enable_freefly()
 		else:
 			disable_freefly()
-
+	
 func _physics_process(delta: float) -> void:
 	# If freeflying, handle freefly and nothing else
 	if can_freefly and freeflying:
@@ -117,6 +137,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Use velocity to actually move
 	move_and_slide()
+	
 
 
 ## Rotate us to look around.

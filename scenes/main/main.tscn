@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4k8bqo7xxfft"]
+[gd_scene load_steps=7 format=3 uid="uid://c4k8bqo7xxfft"]
 
 [ext_resource type="MeshLibrary" uid="uid://cvxvl2xu7ylcy" path="res://lib.tres" id="1_hyk8p"]
-[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://proto_controller.tscn" id="2_iuonh"]
+[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://scenes/player/proto_controller.tscn" id="2_iuonh"]
+[ext_resource type="PackedScene" uid="uid://didxir1bgp4rw" path="res://scenes/soccer_goal/soccer_goal.tscn" id="3_k2fmo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iuonh"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -41,3 +42,6 @@ input_right = "move_right"
 input_forward = "move_forward"
 input_back = "move_backward"
 input_jump = "move_up"
+
+[node name="SoccerGoal" parent="." instance=ExtResource("3_k2fmo")]
+transform = Transform3D(-0.0177142, 0, -0.999843, 0, 1, 0, 0.999843, 0, -0.0177142, 6.96146, 1.00587, -1.58027)

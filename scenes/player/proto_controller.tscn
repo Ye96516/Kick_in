@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bs72ogkvdd7d6"]
+[gd_scene load_steps=6 format=3 uid="uid://bs72ogkvdd7d6"]
 
-[ext_resource type="Script" uid="uid://b42vlnuufrclv" path="res://proto_controller.gd" id="1_ucva2"]
+[ext_resource type="Script" uid="uid://b42vlnuufrclv" path="res://scenes/player/proto_controller.gd" id="1_ucva2"]
+[ext_resource type="PackedScene" uid="uid://c8spd0hew7070" path="res://scenes/ball/ball.tscn" id="2_7avfm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
@@ -13,9 +14,10 @@ height = 1.8
 radius = 0.4
 height = 1.8
 
-[node name="ProtoController" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_ucva2")
 base_speed = 100.0
+ball = ExtResource("2_7avfm")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -31,3 +33,9 @@ shape = SubResource("CapsuleShape3D_iof21")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="Marker3D" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, 0.2, 0.7, -1.2)
+
+[node name="Ball" parent="Marker3D" instance=ExtResource("2_7avfm")]

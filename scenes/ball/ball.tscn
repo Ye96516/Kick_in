@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8spd0hew7070"]
+
+[ext_resource type="Script" uid="uid://wup35t1h8dbb" path="res://scenes/ball/ball.gd" id="1_oqv3d"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_5a6bx"]
+radius = 0.25
+height = 0.5
+radial_segments = 16
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oqv3d"]
+albedo_color = Color(0.415686, 0.431373, 0.501961, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5a6bx"]
+radius = 0.25
+
+[node name="Ball" type="CharacterBody3D"]
+script = ExtResource("1_oqv3d")
+
+[node name="Ball" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_5a6bx")
+surface_material_override/0 = SubResource("StandardMaterial3D_oqv3d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_5a6bx")

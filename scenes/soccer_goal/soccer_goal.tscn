@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://didxir1bgp4rw"]
+
+[ext_resource type="Script" uid="uid://cbm5jjwekkgf2" path="res://scenes/soccer_goal/soccer_goal.gd" id="1_3ro1w"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ambr6"]
+size = Vector3(0.15, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v1usg"]
+size = Vector3(1.86914, 1.97803, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3ro1w"]
+data = PackedVector3Array(-0.075, 1, 1, 0.075, 1, 1, -0.075, -1, 1, 0.075, 1, 1, 0.075, -1, 1, -0.075, -1, 1, 0.075, 1, -1, -0.075, 1, -1, 0.075, -1, -1, -0.075, 1, -1, -0.075, -1, -1, 0.075, -1, -1, 0.075, 1, 1, 0.075, 1, -1, 0.075, -1, 1, 0.075, 1, -1, 0.075, -1, -1, 0.075, -1, 1, -0.075, 1, -1, -0.075, 1, 1, -0.075, -1, -1, -0.075, 1, 1, -0.075, -1, 1, -0.075, -1, -1, 0.075, 1, 1, -0.075, 1, 1, 0.075, 1, -1, -0.075, 1, 1, -0.075, 1, -1, 0.075, 1, -1, -0.075, -1, 1, 0.075, -1, 1, -0.075, -1, -1, 0.075, -1, 1, 0.075, -1, -1, -0.075, -1, -1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_v1usg"]
+data = PackedVector3Array(-0.075, 1, 1, 0.075, 1, 1, -0.075, -1, 1, 0.075, 1, 1, 0.075, -1, 1, -0.075, -1, 1, 0.075, 1, -1, -0.075, 1, -1, 0.075, -1, -1, -0.075, 1, -1, -0.075, -1, -1, 0.075, -1, -1, 0.075, 1, 1, 0.075, 1, -1, 0.075, -1, 1, 0.075, 1, -1, 0.075, -1, -1, 0.075, -1, 1, -0.075, 1, -1, -0.075, 1, 1, -0.075, -1, -1, -0.075, 1, 1, -0.075, -1, 1, -0.075, -1, -1, 0.075, 1, 1, -0.075, 1, 1, 0.075, 1, -1, -0.075, 1, 1, -0.075, 1, -1, 0.075, 1, -1, -0.075, -1, 1, 0.075, -1, 1, -0.075, -1, -1, 0.075, -1, 1, 0.075, -1, -1, -0.075, -1, -1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_18fpu"]
+data = PackedVector3Array(-0.075, 1, 1, 0.075, 1, 1, -0.075, -1, 1, 0.075, 1, 1, 0.075, -1, 1, -0.075, -1, 1, 0.075, 1, -1, -0.075, 1, -1, 0.075, -1, -1, -0.075, 1, -1, -0.075, -1, -1, 0.075, -1, -1, 0.075, 1, 1, 0.075, 1, -1, 0.075, -1, 1, 0.075, 1, -1, 0.075, -1, -1, 0.075, -1, 1, -0.075, 1, -1, -0.075, 1, 1, -0.075, -1, -1, -0.075, 1, 1, -0.075, -1, 1, -0.075, -1, -1, 0.075, 1, 1, -0.075, 1, 1, 0.075, 1, -1, -0.075, 1, 1, -0.075, 1, -1, 0.075, 1, -1, -0.075, -1, 1, 0.075, -1, 1, -0.075, -1, -1, 0.075, -1, 1, 0.075, -1, -1, -0.075, -1, -1)
+
+[node name="SoccerGoal" type="StaticBody3D"]
+script = ExtResource("1_3ro1w")
+
+[node name="SoccerGoal" type="Area3D" parent="."]
+
+[node name="Left" type="MeshInstance3D" parent="SoccerGoal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+mesh = SubResource("BoxMesh_ambr6")
+
+[node name="Rigth" type="MeshInstance3D" parent="SoccerGoal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+mesh = SubResource("BoxMesh_ambr6")
+
+[node name="Back" type="MeshInstance3D" parent="SoccerGoal"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, -1)
+mesh = SubResource("BoxMesh_ambr6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SoccerGoal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00585938, 0.989014, 0)
+shape = SubResource("BoxShape3D_v1usg")
+
+[node name="Left" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+shape = SubResource("ConcavePolygonShape3D_3ro1w")
+
+[node name="Right" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+shape = SubResource("ConcavePolygonShape3D_v1usg")
+
+[node name="Back" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, -1)
+shape = SubResource("ConcavePolygonShape3D_18fpu")
+
+[connection signal="body_entered" from="SoccerGoal" to="." method="_on_soccer_goal_body_entered"]
