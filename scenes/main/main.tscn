@@ -1,8 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4k8bqo7xxfft"]
+[gd_scene load_steps=9 format=3 uid="uid://c4k8bqo7xxfft"]
 
 [ext_resource type="MeshLibrary" uid="uid://cvxvl2xu7ylcy" path="res://lib.tres" id="1_hyk8p"]
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://scenes/player/proto_controller.tscn" id="2_iuonh"]
 [ext_resource type="PackedScene" uid="uid://didxir1bgp4rw" path="res://scenes/soccer_goal/soccer_goal.tscn" id="3_k2fmo"]
+[ext_resource type="Shader" uid="uid://b2ms1mek7vv6e" path="res://scenes/main/glitch.gdshader" id="5_ow5a4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l3cfh"]
+shader = ExtResource("5_ow5a4")
+shader_parameter/glitch_intensity = 0.1
+shader_parameter/color_shift_amount = 0.01
+shader_parameter/scanline_intensity = 0.1
+shader_parameter/block_speed = 5.0
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iuonh"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -16,8 +24,32 @@ background_mode = 2
 sky = SubResource("Sky_k2fmo")
 tonemap_mode = 2
 glow_enabled = true
+adjustment_enabled = true
 
 [node name="Main" type="Node3D"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_l3cfh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l3cfh")
@@ -45,3 +77,6 @@ input_jump = "move_up"
 
 [node name="SoccerGoal" parent="." instance=ExtResource("3_k2fmo")]
 transform = Transform3D(-0.0177142, 0, -0.999843, 0, 1, 0, 0.999843, 0, -0.0177142, 6.96146, 1.00587, -1.58027)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76605, 2.30679)

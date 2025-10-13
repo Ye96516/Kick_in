@@ -65,7 +65,6 @@ func _ready() -> void:
 	look_rotation.x = head.rotation.x
 
 func _unhandled_input(event: InputEvent) -> void:
-	print(basis)
 	#射击逻辑
 	if mouse_captured and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		if marker_3d.get_child_count():
