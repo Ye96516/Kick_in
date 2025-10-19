@@ -4,10 +4,12 @@ class_name Ball extends CharacterBody3D
 
 func _ready() -> void:
 	set_physics_process(false)
+	$CollisionShape3D.disabled=true
 
 func throw(v:Vector3):
 	reparent(get_tree().current_scene)
 	set_physics_process(true)
+	$CollisionShape3D.disabled=false
 	self.velocity=v
 
 func _physics_process(delta: float) -> void:

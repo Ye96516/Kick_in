@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ve1sa3gwe1c4"]
 
 [ext_resource type="MeshLibrary" uid="uid://dpoqtoopmsf6p" path="res://lib.tres" id="1_st4qh"]
-[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://scenes/player/proto_controller.tscn" id="2_51e2l"]
+[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://scenes/player/player.tscn" id="2_51e2l"]
 [ext_resource type="PackedScene" uid="uid://didxir1bgp4rw" path="res://scenes/soccer_goal/soccer_goal.tscn" id="3_oj4i3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k6n02"]
@@ -36,6 +36,7 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="ProtoController" parent="." instance=ExtResource("2_51e2l")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.65749, 0)
 base_speed = 7.0
 input_left = "move_left"

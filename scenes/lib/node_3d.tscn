@@ -1,4 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://emhko7snbs0h"]
+[gd_scene load_steps=13 format=4 uid="uid://emhko7snbs0h"]
+
+[ext_resource type="Material" uid="uid://d3educ7j0in25" path="res://scenes/lib/node_3d.tres" id="1_wqq6m"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wqq6m"]
 
@@ -22,6 +24,25 @@ albedo_color = Color(0.631373, 0, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u5elw"]
 
+[sub_resource type="ArrayMesh" id="ArrayMesh_16wb4"]
+resource_name = "草块法3_Cube"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"attribute_data": PackedByteArray("/5//f//f/z//3/9//5//P79f/3+/n/8/v5//f79f/z+/X7+Av5+/QL+fv4C/X79A/x//f/9f/z//X/9//x//P/9f/3//n/8//5//f/9f/z+/X79A/5//f7+fv0D/X/9/"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": ExtResource("1_wqq6m"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("/////wAA//8AAP///////wAA//8AAP///////////////wAA////vwAA//////+//////////78AAAAA////vwAAAAD//1TVAAD//wAAVNUAAP////9U1QAAAAAAAFTVAAAAAAAA/7///wAA////v///AAAAAP+/AAAAAP///7///wAAAABU1f///////1TV/////wAAVNX//wAA//9U1QAAAAAAAAAA/////wAAAAAAAP//AAAAAP//AAAAAAAA/3//v/9//7//f/+//3//v/////////////////////9U1VTVVNVU1VTVVNVU1VTVAAD/fwAA/38AAP9/AAD/f6oqqiqqKqoqqiqqKqoqqir/v/+//7//v/+//7//v/+/")
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wqq6m"]
+size = Vector3(2, 2, 2)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="Pink" type="MeshInstance3D" parent="."]
@@ -34,7 +55,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_eohp8")
 shape = SubResource("BoxShape3D_eohp8")
 
 [node name="Green" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41038, 0, 0)
 mesh = SubResource("BoxMesh_wqq6m")
 surface_material_override/0 = SubResource("StandardMaterial3D_wqq6m")
 
@@ -44,7 +64,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wqq6m")
 shape = SubResource("BoxShape3D_dxkaf")
 
 [node name="Black" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50648, 0, -0.0330886)
 mesh = SubResource("BoxMesh_wqq6m")
 surface_material_override/0 = SubResource("StandardMaterial3D_dxkaf")
 
@@ -54,7 +73,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_dxkaf")
 shape = SubResource("BoxShape3D_0d5yl")
 
 [node name="Red" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0220079, 0, -1.48072)
 mesh = SubResource("BoxMesh_wqq6m")
 surface_material_override/0 = SubResource("StandardMaterial3D_16wb4")
 
@@ -62,3 +80,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_16wb4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Red/StaticBody3D"]
 shape = SubResource("BoxShape3D_u5elw")
+
+[node name="Grass" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 1.1072793)
+mesh = SubResource("ArrayMesh_16wb4")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Grass"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grass/StaticBody3D"]
+shape = SubResource("BoxShape3D_wqq6m")

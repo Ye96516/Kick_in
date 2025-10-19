@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvxvqnaebr7sd"]
+
+[ext_resource type="Script" uid="uid://dasvogc3exq6i" path="res://scenes/start_menu/start_menu.gd" id="1_ces3l"]
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ces3l")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 632.0
+offset_top = 226.0
+offset_right = 1152.0
+offset_bottom = 409.0
+theme_override_font_sizes/font_size = 128
+text = "进入游戏"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 684.0
+offset_right = 1160.0
+offset_bottom = 867.0
+theme_override_font_sizes/font_size = 128
+text = "退出游戏"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
