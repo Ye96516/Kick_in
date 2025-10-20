@@ -15,7 +15,7 @@ func load_data(key:String):
 		data=ResourceLoader.load(game_data_path) as Content
 		if not (key in data.archives_file):
 			printerr("键 "+key+" 不存在")
-			return
+			return false
 	else:
 		printerr("文件不存在")
 	return data.archives_file[key]
@@ -61,7 +61,9 @@ func query_key(key:String):
 ##初始化文件，一般来说外界无需刻意调用
 func _init_file():
 	if FileAccess.file_exists(game_data_path):
+		
 		data= ResourceLoader.load(game_data_path) as Content
+		print(data.archives_file)
 	else:
 		data = Content.new()
 		ResourceSaver.save(data, game_data_path)
