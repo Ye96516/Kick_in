@@ -3,7 +3,7 @@
 # Intended for rapid prototyping of first-person games.
 # Happy prototyping!
 
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 ## Can we move around?
 @export var can_move : bool = true
@@ -58,6 +58,9 @@ var freeflying : bool = false
 @onready var collider: CollisionShape3D = $Collider
 
 @onready var marker_3d: Marker3D = %Marker3D
+@onready var ball1: Ball = %Ball
+@onready var ball2: MeshInstance3D = %Ball2
+
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 func _ready() -> void:
@@ -66,11 +69,13 @@ func _ready() -> void:
 	look_rotation.x = head.rotation.x
 
 func _unhandled_input(event: InputEvent) -> void:
-
 	#填充逻辑
 	if Input.is_action_just_pressed("reset"):
-		if not marker_3d.get_child_count():
+		if  marker_3d.get_child_count()<2:
 			var bi=ball.instantiate()
+			ball1=bi
+			ball1.visible=false
+			ball2.visible=true
 			marker_3d.add_child(bi)
 			bi.global_position=marker_3d.global_position
 
@@ -187,5 +192,21 @@ func check_input_mappings():
 		push_error("Freefly disabled. No InputAction found for input_freefly: " + input_freefly)
 		can_freefly = false
 
+#播放手部动画
 func shoot_an():
 	animation_player.play("play")
+#射球
+func throw_ball(v:Vector3):
+	shoot_an()
+	ball1.visible=true
+	ball2.visible=false
+	ball1.global_position=ball2.global_position
+	ball1.throw(v)
+#装弹
+func reset_ball():
+	var bi:Node=ball.instantiate()
+	ball1=bi
+	ball1.visible=false
+	ball2.visible=true
+	marker_3d.add_child(bi)
+	bi.global_position=marker_3d.global_position

@@ -1,7 +1,16 @@
 extends Control
 
+var main:PackedScene
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimationPlayer.play("show")
-	pass # Replace with function body.
+	WorkerThreadPool.add_task(
+		load_scence
+	)
+
+func load_scence():
+	main=load("res://scenes/main/main.tscn")
+
+func to_main():
+	get_tree().change_scene_to_packed(main)
+	#get_tree().change_scene_to_file(main)

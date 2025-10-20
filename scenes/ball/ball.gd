@@ -1,25 +1,18 @@
-class_name Ball extends CharacterBody3D
+class_name Ball extends RigidBody3D
  
 @export var death_instance:int=50
 
 func _ready() -> void:
-	set_physics_process(false)
-	$CollisionShape3D.disabled=true
+	disabled()
 
 func throw(v:Vector3):
 	reparent(get_tree().current_scene)
-	set_physics_process(true)
-	$CollisionShape3D.disabled=false
-	self.velocity=v
+	enabled()
+	apply_central_impulse(v)
 
-func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	
+func _physics_process(_delta: float) -> void:
 	death_sentence()
 	
-	move_and_slide()
-
 func death_sentence():
 	if abs(global_position.x)>death_instance:
 		queue_free()
@@ -28,3 +21,12 @@ func death_sentence():
 	if abs(global_position.z)>death_instance:
 		queue_free()
 		
+func disabled():
+	set_physics_process(false)
+	$CollisionShape3D.disabled=true
+	gravity_scale=0.0
+
+func enabled():
+	set_physics_process(true)
+	$CollisionShape3D.disabled=false
+	gravity_scale=1.0
