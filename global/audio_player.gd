@@ -38,8 +38,9 @@ func contine(audio):
 
 ##销毁此播放器
 func destory(audio):
-	audio.stop()
-	audio.queue_free()
+	if is_instance_valid(audio):
+		audio.stop()
+		audio.queue_free()
 
 #此函数的参数是在连接信号的的时候传入的
 ##音乐播放完自动执行

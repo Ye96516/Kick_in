@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvxvqnaebr7sd"]
+[gd_scene load_steps=5 format=3 uid="uid://dvxvqnaebr7sd"]
 
 [ext_resource type="Script" uid="uid://dasvogc3exq6i" path="res://scenes/start_menu/start_menu.gd" id="1_ces3l"]
+[ext_resource type="FontFile" uid="uid://c36vedycty314" path="res://art/font/云峰飞云体.ttf" id="3_ifyap"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_uqtq5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tj3dw"]
+bg_color = Color(0.7852406, 0.53036445, 0.41391513, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -11,26 +21,35 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ces3l")
 
+[node name="BG" type="TextureRect" parent="."]
+self_modulate = Color(0.6784314, 0.8235294, 0.85882354, 1)
+layout_mode = 0
+offset_top = -3.0
+offset_right = 1935.0
+offset_bottom = 1073.0
+texture = SubResource("CanvasTexture_uqtq5")
+
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 632.0
 offset_top = 226.0
-offset_right = 1152.0
-offset_bottom = 409.0
+offset_right = 1288.0
+offset_bottom = 435.0
+theme_override_fonts/font = ExtResource("3_ifyap")
 theme_override_font_sizes/font_size = 128
+theme_override_styles/normal = SubResource("StyleBoxFlat_tj3dw")
 text = "进入游戏"
 
 [node name="Button2" type="Button" parent="."]
 layout_mode = 0
 offset_left = 640.0
 offset_top = 684.0
-offset_right = 1160.0
-offset_bottom = 867.0
+offset_right = 1292.0
+offset_bottom = 900.0
+theme_override_fonts/font = ExtResource("3_ifyap")
 theme_override_font_sizes/font_size = 128
+theme_override_styles/normal = SubResource("StyleBoxFlat_tj3dw")
 text = "退出游戏"
 
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

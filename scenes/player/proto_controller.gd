@@ -30,15 +30,15 @@ class_name Player extends CharacterBody3D
 
 @export_group("Input Actions")
 ## Name of Input Action to move Left.
-@export var input_left : String = "ui_left"
+@export var input_left : String = "move_left"
 ## Name of Input Action to move Right.
-@export var input_right : String = "ui_right"
+@export var input_right : String = "move_right"
 ## Name of Input Action to move Forward.
-@export var input_forward : String = "ui_up"
+@export var input_forward : String = "move_forward"
 ## Name of Input Action to move Backward.
-@export var input_back : String = "ui_down"
+@export var input_back : String = "move_backward"
 ## Name of Input Action to Jump.
-@export var input_jump : String = "ui_accept"
+@export var input_jump : String = "move_up"
 ## Name of Input Action to Sprint.
 @export var input_sprint : String = "sprint"
 ## Name of Input Action to toggle freefly mode.
@@ -47,6 +47,7 @@ class_name Player extends CharacterBody3D
 @export_group("Other")
 @export var throw_froce:Vector3=Vector3(1,0,-10)
 @export var ball:PackedScene
+@export var in_main:bool=true
 
 var mouse_captured : bool = false
 var look_rotation : Vector2
@@ -78,11 +79,15 @@ func _unhandled_input(event: InputEvent) -> void:
 			ball2.visible=true
 			marker_3d.add_child(bi)
 			bi.global_position=marker_3d.global_position
+	#是否在主场景
+	if not in_main:
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			capture_mouse()
+		if Input.is_key_pressed(KEY_ESCAPE):
+			release_mouse()
+		if mouse_captured and event is InputEventMouseMotion:
+			rotate_look(event.relative)
 
-	# Look around
-	if mouse_captured and event is InputEventMouseMotion:
-		rotate_look(event.relative)
-	
 	# Toggle freefly mode
 	if can_freefly and Input.is_action_just_pressed(input_freefly):
 		if not freeflying:
@@ -120,6 +125,7 @@ func _physics_process(delta: float) -> void:
 		var input_dir := Input.get_vector(input_left, input_right, input_forward, input_back)
 		var move_dir := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		if move_dir:
+			
 			velocity.x = move_dir.x * move_speed
 			velocity.z = move_dir.z * move_speed
 		else:

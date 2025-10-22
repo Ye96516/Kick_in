@@ -6,6 +6,7 @@ extends Node3D
 const NOISE = preload("uid://dkt7u8bg5j62s")
 var audio_player:AudioStreamPlayer
 
+
 #根据路径加载场景，销毁当前场景，并且初始化玩家位置
 func to_next_level(file_path:String,current_scence:Node):
 	current_scence.queue_free()
