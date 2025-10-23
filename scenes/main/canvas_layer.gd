@@ -12,5 +12,5 @@ func _ready() -> void:
 func ball_occer(file_path:String,current_scence:Node,_l:int):
 	self.visible=true
 	await next.pressed
-	#CS.load_level(file_path,current_scence,sub_viewport,player)
+	CS.load_level(file_path,current_scence,sub_viewport,player)
 	self.visible=false

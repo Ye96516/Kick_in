@@ -36,11 +36,15 @@ texture = SubResource("CanvasTexture_p1glo")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 451.0
-offset_top = 752.0
-offset_right = 1570.0
-offset_bottom = 901.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -559.5
+offset_top = 785.0
+offset_right = 559.5
+offset_bottom = 934.0
+grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 theme_override_styles/background = SubResource("StyleBoxFlat_ualpm")
@@ -49,21 +53,29 @@ value = 90.0
 
 [node name="Loading" type="Label" parent="."]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 688.0
-offset_top = 505.0
-offset_right = 1284.0
-offset_bottom = 719.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -298.0
+offset_top = 515.0
+offset_right = 298.0
+offset_bottom = 729.0
+grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_ts12t")
 theme_override_font_sizes/font_size = 128
 text = "加载中。。。"
 
 [node name="Name" type="Label" parent="."]
-layout_mode = 0
-offset_left = 387.0
-offset_top = 124.0
-offset_right = 1762.0
-offset_bottom = 359.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -687.5
+offset_top = 160.0
+offset_right = 687.5
+offset_bottom = 395.0
+grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_ts12t")
 theme_override_font_sizes/font_size = 256
 text = "故障绿茵场"

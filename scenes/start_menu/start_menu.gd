@@ -9,12 +9,13 @@ func _ready() -> void:
 func _on_button_pressed() -> void:
 	if SS.query_key("guide") and not SS.load_data("guide"):
 		get_tree().change_scene_to_file("res://scenes/guide/guide.tscn")
-	CS.change_scene("res://scenes/main/main.tscn")
-	#if SS.query_key("guide") and SS.load_data("guide"):
-		#match SS.load_data("level"):
-			#1:
-				##CS.to_main(["res://scenes/main/main.tscn","res://scenes/level1/level_1.tscn"])
-				#CS.change_scene("res://scenes/level1/level_1.tscn")
+	
+	if SS.query_key("guide") and SS.load_data("guide"):
+		match SS.load_data("level"):
+			1:
+				CS.to_main(["res://scenes/main/main.tscn","res://scenes/level1/level_1.tscn"])
+			2:
+				CS.to_main(["res://scenes/main/main.tscn","res://scenes/level2/level_2.tscn"])
 
 func _on_button_2_pressed() -> void:
 	get_tree().quit()
