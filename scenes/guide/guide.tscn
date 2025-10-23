@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://tmuydmji8f2v"]
+[gd_scene load_steps=9 format=3 uid="uid://tmuydmji8f2v"]
 
 [ext_resource type="Script" uid="uid://dq6ksjh3vyfrm" path="res://scenes/guide/guide.gd" id="1_16a7r"]
 [ext_resource type="Shader" uid="uid://b2ms1mek7vv6e" path="res://scenes/main/glitch.gdshader" id="1_ko7pb"]
+[ext_resource type="FontFile" uid="uid://c36vedycty314" path="res://art/font/云峰飞云体.ttf" id="2_ufxk7"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_tdajq"]
 
@@ -274,8 +275,9 @@ offset_left = 322.0
 offset_top = 94.0
 offset_right = 1638.0
 offset_bottom = 271.0
+theme_override_fonts/font = ExtResource("2_ufxk7")
 theme_override_font_sizes/font_size = 128
-text = "你，热爱踢足球。"
+text = "你是足球狂热粉"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
@@ -284,6 +286,7 @@ offset_left = 298.0
 offset_top = 322.0
 offset_right = 1706.0
 offset_bottom = 499.0
+theme_override_fonts/font = ExtResource("2_ufxk7")
 theme_override_font_sizes/font_size = 128
 text = "但是，你的足球不见了。"
 horizontal_alignment = 1
@@ -296,6 +299,7 @@ offset_left = 20.0
 offset_top = 555.0
 offset_right = 1924.0
 offset_bottom = 732.0
+theme_override_fonts/font = ExtResource("2_ufxk7")
 theme_override_font_sizes/font_size = 128
 text = "\"无论怎样，我都要找到我的球。\""
 horizontal_alignment = 1
@@ -308,6 +312,7 @@ offset_left = 298.0
 offset_top = 784.0
 offset_right = 1706.0
 offset_bottom = 961.0
+theme_override_fonts/font = ExtResource("2_ufxk7")
 theme_override_font_sizes/font_size = 128
 text = "“然后射门！”"
 horizontal_alignment = 1

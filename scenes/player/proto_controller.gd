@@ -100,6 +100,7 @@ func _physics_process(delta: float) -> void:
 	if can_freefly and freeflying:
 		var input_dir := Input.get_vector(input_left, input_right, input_forward, input_back)
 		var motion := (head.global_basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		print(input_dir)
 		motion *= freefly_speed * delta
 		move_and_collide(motion)
 		return

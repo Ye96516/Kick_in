@@ -4,8 +4,8 @@ func _on_body_entered(body: Node3D) -> void:
 	if body is Ball:
 		body.queue_free()
 	if body is Player:
-		owner.appear_glitch()
+		get_tree().get_first_node_in_group("main").appear_glitch()
 
 func _on_body_exited(body: Node3D) -> void:
 	if body is Player:
-		owner.disappear_glitch()
+		get_tree().get_first_node_in_group("main").disappear_glitch()

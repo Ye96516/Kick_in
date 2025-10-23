@@ -60,9 +60,9 @@ func query_key(key:String):
 
 ##初始化文件，一般来说外界无需刻意调用
 func _init_file():
-	if FileAccess.file_exists(game_data_path):
-		data= ResourceLoader.load(game_data_path) as Content
-		#print(data.archives_file)
+	#if FileAccess.file_exists(game_data_path):
+	if  ResourceLoader.exists(game_data_path):
+		data= ResourceLoader.load(game_data_path) 
 	else:
 		data = Content.new()
 		ResourceSaver.save(data, game_data_path)

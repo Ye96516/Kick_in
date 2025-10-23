@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 Global="*res://global/global.gd"
 SS="*res://global/save_load/save_load_system.gd"
 AD="*res://global/audio_player.gd"
-CS="*res://global/change_scene.gd"
+CS="*res://global/change_scene/loading.tscn"
 
 [display]
 

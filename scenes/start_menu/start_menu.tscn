@@ -1,16 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvxvqnaebr7sd"]
+[gd_scene load_steps=7 format=3 uid="uid://dvxvqnaebr7sd"]
 
 [ext_resource type="Script" uid="uid://dasvogc3exq6i" path="res://scenes/start_menu/start_menu.gd" id="1_ces3l"]
 [ext_resource type="FontFile" uid="uid://c36vedycty314" path="res://art/font/云峰飞云体.ttf" id="3_ifyap"]
+[ext_resource type="Shader" uid="uid://b2ms1mek7vv6e" path="res://scenes/main/glitch.gdshader" id="3_ujype"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_uqtq5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tj3dw"]
-bg_color = Color(0.7852406, 0.53036445, 0.41391513, 1)
+bg_color = Color(0.39215687, 0.39215687, 0.39215687, 1)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ifyap"]
+shader = ExtResource("3_ujype")
+shader_parameter/glitch_intensity = 0.17600000836
+shader_parameter/color_shift_amount = 0.010000000475
+shader_parameter/block_speed = 5.0
+shader_parameter/stripe_count = 10.0
+shader_parameter/enable_scanlines = false
+shader_parameter/scanline_intensity = 0.1
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -22,7 +32,7 @@ grow_vertical = 2
 script = ExtResource("1_ces3l")
 
 [node name="BG" type="TextureRect" parent="."]
-self_modulate = Color(0.6784314, 0.8235294, 0.85882354, 1)
+self_modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_top = -3.0
 offset_right = 1935.0
@@ -32,9 +42,9 @@ texture = SubResource("CanvasTexture_uqtq5")
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 632.0
-offset_top = 226.0
+offset_top = 373.0
 offset_right = 1288.0
-offset_bottom = 435.0
+offset_bottom = 582.0
 theme_override_fonts/font = ExtResource("3_ifyap")
 theme_override_font_sizes/font_size = 128
 theme_override_styles/normal = SubResource("StyleBoxFlat_tj3dw")
@@ -43,13 +53,32 @@ text = "进入游戏"
 [node name="Button2" type="Button" parent="."]
 layout_mode = 0
 offset_left = 640.0
-offset_top = 684.0
+offset_top = 738.0
 offset_right = 1292.0
-offset_bottom = 900.0
+offset_bottom = 954.0
 theme_override_fonts/font = ExtResource("3_ifyap")
 theme_override_font_sizes/font_size = 128
 theme_override_styles/normal = SubResource("StyleBoxFlat_tj3dw")
 text = "退出游戏"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 503.0
+offset_top = 58.0
+offset_right = 1481.9258
+offset_bottom = 307.0
+theme_override_fonts/font = ExtResource("3_ifyap")
+theme_override_font_sizes/font_size = 180
+text = "故障绿茵场"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ifyap")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.147
+anchor_bottom = 0.052
+offset_right = 1660.76
+offset_bottom = 285.84
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

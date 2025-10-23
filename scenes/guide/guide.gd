@@ -13,9 +13,7 @@ func _ready() -> void:
 func load_scence():
 	main=load("res://scenes/main/main.tscn")
 
-
 func to_main():
-	
 	SS.save_data("guide",true)
 	get_tree().change_scene_to_packed(main)
 	
