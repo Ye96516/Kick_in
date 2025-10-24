@@ -217,3 +217,7 @@ func reset_ball():
 	ball2.visible=true
 	marker_3d.add_child(bi)
 	bi.global_position=marker_3d.global_position
+
+
+func _on_check_ball_area_entered(area: Area3D) -> void:
+	pass # Replace with function body.
