@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://625uyn1xcwno"]
+[gd_scene load_steps=12 format=3 uid="uid://625uyn1xcwno"]
 
 [ext_resource type="Script" uid="uid://dnvsvi4dgcn8h" path="res://global/change_scene/change_scene.gd" id="1_6bc77"]
 [ext_resource type="FontFile" uid="uid://c36vedycty314" path="res://art/font/云峰飞云体.ttf" id="2_ts12t"]
@@ -17,12 +17,50 @@ bg_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
 corner_radius_top_left = 50
 corner_radius_bottom_left = 50
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_6bc77"]
+
+[sub_resource type="Curve" id="Curve_ts12t"]
+_data = [Vector2(0.0013245009, 0.90724635), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_p1glo"]
+curve = SubResource("Curve_ts12t")
+
+[sub_resource type="Curve" id="Curve_ualpm"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, -0.5652174), 0.0, 0.0, 0, 0, Vector2(0.4715232, 0.28695655), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5kmmf"]
+curve = SubResource("Curve_ualpm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m5a8i"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(30, 25, 0)
+direction = Vector3(1, 1, 0)
+spread = 89.778
+initial_velocity_max = 10.0
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 0.010000096
+gravity = Vector3(0, 98, 0)
+scale_min = 18.52
+scale_max = 113.11
+scale_over_velocity_min = 16.22
+scale_over_velocity_max = 191.37
+alpha_curve = SubResource("CurveTexture_p1glo")
+hue_variation_min = -0.87
+hue_variation_max = 0.99999994
+hue_variation_curve = SubResource("CurveTexture_5kmmf")
+
 [node name="Loading" type="Control"]
 z_index = 4095
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -5.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6bc77")
@@ -71,11 +109,20 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -687.5
-offset_top = 160.0
-offset_right = 687.5
-offset_bottom = 395.0
+offset_left = -679.0
+offset_top = 53.0
+offset_right = 790.0
+offset_bottom = 474.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_ts12t")
 theme_override_font_sizes/font_size = 256
 text = "故障绿茵场"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(969, 462.00003)
+scale = Vector2(-33.441833, -22.868322)
+amount = 25
+texture = SubResource("CanvasTexture_6bc77")
+lifetime = 6.0
+fixed_fps = 25
+process_material = SubResource("ParticleProcessMaterial_m5a8i")
