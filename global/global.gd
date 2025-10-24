@@ -1,5 +1,7 @@
 extends Node
 
+var get_ladder:bool
+
 var socre_occer:bool
 signal occer(next_path:String,current_scene:Node,level:int)
 

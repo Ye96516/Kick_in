@@ -54,22 +54,37 @@ var look_rotation : Vector2
 var move_speed : float =0.0
 var freeflying : bool = false
 
+
 ## IMPORTANT REFERENCES
 @onready var head: Node3D = $Head
 @onready var collider: CollisionShape3D = $Collider
-
+##跟球相关的
 @onready var marker_3d: Marker3D = %Marker3D
 @onready var ball1: Ball = %Ball
 @onready var ball2: MeshInstance3D = %Ball2
+##其他道具
+@onready var marker_3d_2: Marker3D = $Marker3D2
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
+#梯子相关
+var ladder:Node
+var ladder_in_area:bool
+
 func _ready() -> void:
 	check_input_mappings()
+	ball1.visible=false
+	ball2.visible=true
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
 
 func _unhandled_input(event: InputEvent) -> void:
+	#梯子拾取
+	if Input.is_action_just_pressed("pick_up") and ladder_in_area:
+		ladder.reparent(marker_3d_2)
+		ladder.global_position=marker_3d_2.global_position
+		ladder.label.visible=false
+		Global.get_ladder=true
 	#填充逻辑
 	if Input.is_action_just_pressed("reset"):
 		if  marker_3d.get_child_count()<2:
@@ -220,4 +235,13 @@ func reset_ball():
 
 
 func _on_check_ball_area_entered(area: Area3D) -> void:
-	pass # Replace with function body.
+	if area.editor_description=="梯子":
+		ladder_in_area=true
+		ladder=area.get_parent()
+		ladder.label.visible=true
+		print("遇到梯子")
+
+
+func _on_check_ball_area_exited(area: Area3D) -> void:
+	if area.editor_description=="梯子":
+		ladder_in_area=false

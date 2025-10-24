@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://bkotoy7qwlxx3"]
+[gd_scene load_steps=44 format=4 uid="uid://bkotoy7qwlxx3"]
 
 [ext_resource type="Texture2D" uid="uid://n2fndg4cc38g" path="res://art/球场门/球场们_gate_diffuse.jpg" id="1_e5tm7"]
 [ext_resource type="Script" uid="uid://cfqr55jcrgnwp" path="res://scenes/ancient_gate/ancient_gate_model.gd" id="1_imekd"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d1ko2mfve8hnv" path="res://art/球场门/球场们_lightupper_normal.jpg" id="6_fwu06"]
 [ext_resource type="Texture2D" uid="uid://dt6ygwwstjuh7" path="res://art/球场门/球场们_pillar_diffuse.jpg" id="7_tdauj"]
 [ext_resource type="Texture2D" uid="uid://c16nnuj5quhmh" path="res://art/球场门/球场们_pillar_normalmap.jpg" id="8_vox3d"]
+[ext_resource type="FontFile" uid="uid://c36vedycty314" path="res://art/font/云峰飞云体.ttf" id="10_084cn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xiryb"]
 resource_name = "gate_texture"
@@ -481,7 +482,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fwu06"]
-size = Vector3(21.7, 10, 1)
+size = Vector3(21.7, 16, 3.9)
 
 [node name="Ancient_Gate_Model" type="Node3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0, -0.5, 0, 0.5, 0, 0, 0, 0)
@@ -588,7 +589,17 @@ libraries = {
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 3.0000002, -0.95000005)
 shape = SubResource("BoxShape3D_fwu06")
 
+[node name="Label3D" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02, -6.8)
+billboard = 2
+modulate = Color(1.6124506, 0.30353206, 0.3475012, 1)
+text = "师傅你是做什么工作的？"
+font = ExtResource("10_084cn")
+font_size = 186
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

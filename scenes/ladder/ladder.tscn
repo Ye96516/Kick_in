@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://2suylgb2d24g"]
+[gd_scene load_steps=10 format=4 uid="uid://2suylgb2d24g"]
 
 [ext_resource type="Script" uid="uid://cw50exosk3nwy" path="res://scenes/ladder/ladder.gd" id="1_1hr68"]
 [ext_resource type="Script" uid="uid://dydfkrt3vsy5h" path="res://scenes/ladder/area_3d.gd" id="2_ker02"]
+[ext_resource type="FontFile" uid="uid://c36vedycty314" path="res://art/font/云峰飞云体.ttf" id="3_e3hwr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b378m"]
 resource_name = "Nuovo"
@@ -94,4 +95,10 @@ script = ExtResource("2_ker02")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05000007, 0.1, -0.100000106)
 shape = SubResource("BoxShape3D_t5oil")
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[node name="Label3D" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+billboard = 2
+text = "按F键拾取"
+font = ExtResource("3_e3hwr")
+font_size = 128
